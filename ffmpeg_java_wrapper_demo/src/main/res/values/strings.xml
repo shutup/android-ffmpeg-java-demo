@@ -1,9 +1,13 @@
 <resources>
-    <string name="app_name">FFMpegCmdUtils</string>
+    <string name="app_name">FFMpegJavaWrapperDemo</string>
     <string name="clip_the_video">Clip The Video</string>
     <string name="clip_video">clip video</string>
     <string name="concat_the_video">Concat The Video</string>
     <string name="concat_video">concat video</string>
     <string name="select_video">select video</string>
-    <string name="select_the_video">select the video</string>
+    <string name="select_the_video">Select the video</string>
+    <string name="input_the_clipped_file_name">input the clipped file name</string>
+    <string name="duration_in_seconds">duration in seconds</string>
+    <string name="starttime_in_seconds">startTime in seconds</string>
+    <string name="input_the_concated_file_name">input_the_concated_file_name</string>
 </resources>

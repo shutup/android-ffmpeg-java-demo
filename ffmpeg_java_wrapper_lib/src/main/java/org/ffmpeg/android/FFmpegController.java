@@ -313,6 +313,48 @@ public class FFmpegController {
 
 		execFFMPEG(cmd, sc);
 	}
+	public void concatVideo(ArrayList<Clip> videos, Clip out, boolean enableExperimental, ShellCallback sc) throws IOException, InterruptedException {
+
+		//this can only concat the same format video
+		//ffmpeg -f concat -i Cam01.txt -c copy Cam01.mp4
+		//this can only concat some special format ,that can also be concat by cat or copy
+		//ffmpeg -i "concat:intermediate1.ts|intermediate2.ts" -c copy  output.mp4
+		StringBuffer sbCat = new StringBuffer();
+		for (Clip c : videos) {
+			sbCat.append("file ");
+			sbCat.append(c.path);
+			sbCat.append("\r\n");
+		}
+		sbCat.deleteCharAt(sbCat.length()-1);
+		File fileExportOut = new File(out.path);
+		fileExportOut.delete();
+		File parentFile = fileExportOut.getParentFile();
+		File tempFile = new File(parentFile,"list.txt");
+		if (tempFile.exists()){
+			tempFile.delete();
+		}
+
+		FileOutputStream fos = new FileOutputStream(tempFile);
+		fos.write(sbCat.toString().getBytes());
+		fos.close();
+
+		ArrayList<String> cmd = new ArrayList<String>();
+
+		cmd.add(mFfmpegBin);
+		cmd.add("-y");
+		cmd.add("-f");
+		cmd.add("concat");
+		cmd.add("-i");
+		cmd.add(tempFile.getCanonicalPath());
+
+		cmd.add("-c");
+		cmd.add("copy");
+
+
+		cmd.add(fileExportOut.getCanonicalPath());
+
+		execFFMPEG(cmd, sc);
+	}
 	public void processVideo(Clip in, Clip out, boolean enableExperimental, ShellCallback sc) throws Exception {
 		
     	ArrayList<String> cmd = new ArrayList<String>();
