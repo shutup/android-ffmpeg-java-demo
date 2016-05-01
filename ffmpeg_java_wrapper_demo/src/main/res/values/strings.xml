@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FFMpegCmdUtils</string>
+    <string name="clip_the_video">Clip The Video</string>
+    <string name="clip_video">clip video</string>
+    <string name="concat_the_video">Concat The Video</string>
+    <string name="concat_video">concat video</string>
+    <string name="select_video">select video</string>
+    <string name="select_the_video">select the video</string>
+</resources>
